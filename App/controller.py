@@ -56,4 +56,12 @@ def loadBooksTags(catalog):
     """
     TODO
     """
-    pass
+    catalogfile = cf.data_dir + catalog
+    input_file = csv.DictReader(open(catalogfile, encoding='utf-8'))
+
+    tags = model.createTagList()
+    for tag in input_file:
+        model.addTag(tags, tag)
+
+    return model.addBooks(catalogfile), tags
+
